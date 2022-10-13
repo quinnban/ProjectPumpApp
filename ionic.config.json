@@ -1,0 +1,7 @@
+{
+  "name": "migrationworkouts",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
