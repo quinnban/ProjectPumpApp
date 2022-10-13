@@ -1,9 +1,22 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-
+  <ion-grid class="fullH">
+    <ion-row class="ion-align-items-center fullH">
+      <ion-col>
+        <ion-list>
+          <ion-item class="ion-padding">
+            <ion-img src="assets/logo.svg"></ion-img>
+          </ion-item>
+          <ion-item>
+            <ion-label>Email:</ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Password:</ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+            <ion-button expand="block"  routerLink="/folder/Inbox">Login</ion-button>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
