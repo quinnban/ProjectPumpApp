@@ -22,12 +22,17 @@ export class ProfilePage implements OnInit {
     });
 
     this.pictureUrl = picture.webPath;
-    console.log(picture);
+    let file;
 
-    const readSecretFile = await Filesystem.readFile({
-      path: picture.webPath,
-    });
-    console.log(readSecretFile);
+    if(!picture.path){
+      file = await fetch(picture.webPath).then(r => r.blob());
+    } else {
+      file = await Filesystem.readFile({
+        path: picture.webPath,
+      });
+    }
+
+    console.log(file);
   }
 
   ngOnInit() {

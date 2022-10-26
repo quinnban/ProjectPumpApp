@@ -18,6 +18,26 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'manage-teams',
+    loadChildren: () => import('./manage-teams/manage-teams.module').then( m => m.ManageTeamsPageModule)
+  },
+  {
+    path: 'manage-users',
+    loadChildren: () => import('./manage-users/manage-users.module').then( m => m.ManageUsersPageModule)
+  },
+  {
+    path: 'workouts',
+    loadChildren: () => import('./workouts/workouts.module').then( m => m.WorkoutsPageModule)
+  },
+  {
+    path: 'workout/:id',
+    loadChildren: () => import('./workout-details/workout-details.module').then( m => m.WorkoutDetailsPageModule)
   }
 ];
 
