@@ -1,9 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>ManageUsers</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Manage Users</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-item>
+    <ion-input placeholder="search for User"></ion-input>
+  </ion-item>
 
+    <ion-list role="feed">
+      <ion-item role="article" *ngFor="let u of user;let  i = index;" >
+        <ion-avatar slot="start">
+          <ion-img src="https://ionicframework.com/docs/img/demos/avatar.svg"></ion-img>
+        </ion-avatar>
+        <ion-label>User {{i}}</ion-label>
+      </ion-item>
+    </ion-list>
+
+  <ion-infinite-scroll>
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
+

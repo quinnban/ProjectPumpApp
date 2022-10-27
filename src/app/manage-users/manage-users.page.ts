@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageUsersPage implements OnInit {
 
+  user = Array(20).fill(0).map((x,i)=>i);
+
+
   constructor() { }
 
   ngOnInit() {

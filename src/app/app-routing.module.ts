@@ -8,10 +8,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
-  },
-  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
@@ -38,6 +34,14 @@ const routes: Routes = [
   {
     path: 'workout/:id',
     loadChildren: () => import('./workout-details/workout-details.module').then( m => m.WorkoutDetailsPageModule)
+  },
+  {
+    path: 'create-team',
+    loadChildren: () => import('./create-team/create-team.module').then( m => m.CreateTeamPageModule)
+  },
+  {
+    path: 'team/:id',
+    loadChildren: () => import('./edit-team/edit-team.module').then( m => m.EditTeamPageModule)
   }
 ];
 
