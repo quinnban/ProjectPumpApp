@@ -7,15 +7,11 @@
     <ion-buttons slot="end"  routerLink="/create-team">
       <ion-icon name="add-outline" size="large"></ion-icon>
     </ion-buttons>
-
   </ion-toolbar>
+  <ion-searchbar></ion-searchbar>
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-input placeholder="search for Team"></ion-input>
-  </ion-item>
-
     <ion-list role="feed">
       <ion-item role="article" *ngFor="let t of team;let  i = index;"  routerLink="/team/{{i}}">
         <ion-avatar slot="start">

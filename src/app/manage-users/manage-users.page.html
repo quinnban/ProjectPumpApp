@@ -5,12 +5,11 @@
     </ion-buttons>
     <ion-title>Manage Users</ion-title>
   </ion-toolbar>
+  <ion-searchbar></ion-searchbar>
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-input placeholder="search for User"></ion-input>
-  </ion-item>
+
 
     <ion-list role="feed">
       <ion-item role="article" *ngFor="let u of user;let  i = index;" >

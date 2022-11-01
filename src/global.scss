@@ -31,3 +31,18 @@
 .fullW{
   width: 100%;
 }
+
+
+
+.avatarContainer {
+  margin-top:1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  height: 10rem;
+}
+
+.avatar {
+  height: 10rem;
+  width: 10rem;
+}

@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { CreateTeamPageRoutingModule } from './create-team-routing.module';
 
 import { CreateTeamPage } from './create-team.page';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CreateTeamPageRoutingModule
+    CreateTeamPageRoutingModule,
+    SharedModule
   ],
   declarations: [CreateTeamPage]
 })
