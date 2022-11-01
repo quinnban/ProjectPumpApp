@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>CreateTeam</ion-title>
+    <ion-title>Create Team</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -23,8 +23,10 @@
 
     <ion-item (click)="openModal()">
       <ion-label position="stacked">Users</ion-label>
-      <ion-label>"users on team"</ion-label>
+      <ion-label>{{selectedUsersLabel}}</ion-label>
     </ion-item>
+
+    <ion-button expand="full">Create</ion-button>
   </ion-list>
 
 </ion-content>

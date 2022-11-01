@@ -12,6 +12,8 @@ import { SelectUsersModalComponent } from '../shared/componets/select-users-moda
 export class CreateTeamPage implements OnInit {
 
   pictureUrl=null;
+  selectedUsers=[];
+  selectedUsersLabel: string;
 
   constructor(private modalCtrl: ModalController) { }
 
@@ -38,18 +40,28 @@ export class CreateTeamPage implements OnInit {
   }
 
   ngOnInit() {
+    this.selectedUsersLabel = 'none';
   }
 
   async openModal() {
     const modal = await this.modalCtrl.create({
       component: SelectUsersModalComponent,
-      componentProps: {orginialUsers: Array(20).fill(0).map((x,i)=>i)}
+      componentProps: {
+        orginialUsers: Array(20).fill(0).map((x,i)=>i),
+        selectedUsers: this.selectedUsers
+      }
     });
     modal.present();
 
     const { data, role } = await modal.onWillDismiss();
-
-    console.log(data);
+    this.selectedUsers = data;
+    if(this.selectedUsers.length!==0){
+      this.selectedUsersLabel='';
+      this.selectedUsers.forEach(u => this.selectedUsersLabel+='User '+ u + ', ');
+      this.selectedUsersLabel = this.selectedUsersLabel.slice(0,-2);
+    } else {
+      this.selectedUsersLabel = 'none';
+    }
   }
 
 }
