@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkoutDetailsPage implements OnInit {
 
+  exercises = Array(6).fill(0).map((x,i)=>i);
+
   constructor() { }
 
   ngOnInit() {
