@@ -4,7 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 import { SelectUsersModalComponent } from './componets/select-users-modal/select-users-modal.component';
-import { UserServiceService } from './services/user-service.service';
+import { UserService } from './services/user.service';
+import { TeamService } from './services/team.service';
+import { AuthService } from './services/auth.service';
 
 
 @NgModule({
@@ -13,7 +15,7 @@ import { UserServiceService } from './services/user-service.service';
     FormsModule,
     IonicModule,
   ],
-  providers:[UserServiceService],
+  providers:[UserService,TeamService,AuthService],
   declarations: [SelectUsersModalComponent],
   exports:[SelectUsersModalComponent]
 })

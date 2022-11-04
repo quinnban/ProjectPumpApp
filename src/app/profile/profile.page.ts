@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +12,7 @@ export class ProfilePage implements OnInit {
 
   pictureUrl=null;
 
-  constructor() { }
+  constructor(private alertController: AlertController) { }
 
 
   async changePicture(){
@@ -36,27 +37,74 @@ export class ProfilePage implements OnInit {
   }
 
   ngOnInit() {
-    //https://capacitorjs.com/docs/apis/camera#pwa-notes
-    //https://capacitorjs.com/docs/web/pwa-elements
+  }
 
-    /*
-      const takePicture = async () => {
-    const image = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: true,
-      resultType: CameraResultType.Uri
+  async updateEmail(): Promise<void> {
+    const alert = await this.alertController.create({
+      header: 'Update Email',
+      buttons: [
+        {
+          text: 'OK',
+          role: 'confirm',
+          handler: (value) => {
+            console.log(value);
+            //do http return false is error
+            //return false;
+          },
+      },
+      {
+        role:'cancel',
+        text:'cancel'
+      }
+    ],
+      inputs: [
+        {
+          placeholder: 'Email',
+          type:'email'
+        },
+        {
+          placeholder: 'Confirm email',
+          type:'email'
+        },
+      ],
     });
 
-    // image.webPath will contain a path that can be set as an image src.
-    // You can access the original file using image.path, which can be
-    // passed to the Filesystem API to read the raw data of the image,
-    // if desired (or pass resultType: CameraResultType.Base64 to getPhoto)
-    var imageUrl = image.webPath;
+    await alert.present();
 
-    // Can be set to the src of an image now
-    imageElement.src = imageUrl;
-  };
-*/
+  }
+
+  async updatePassword(): Promise<void> {
+    const alert = await this.alertController.create({
+      header: 'Update Password',
+      buttons: [
+        {
+          text: 'OK',
+          role: 'confirm',
+          handler: (value) => {
+            console.log(value);
+            //do http return false is error
+            //return false;
+          },
+      },
+      {
+        role:'cancel',
+        text:'cancel'
+      }
+    ],
+      inputs: [
+        {
+          placeholder: 'Password',
+          type:'text'
+        },
+        {
+          placeholder: 'Confirm password',
+          type:'text'
+        },
+      ],
+    });
+
+    await alert.present();
+
   }
 
 }
