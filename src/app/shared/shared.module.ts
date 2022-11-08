@@ -8,6 +8,7 @@ import { SelectUsersModalComponent } from './componets/select-users-modal/select
 import { UserService } from './services/user.service';
 import { TeamService } from './services/team.service';
 import { AuthService } from './services/auth.service';
+import { AwsService } from './services/aws.service';
 
 
 @NgModule({
@@ -17,7 +18,7 @@ import { AuthService } from './services/auth.service';
     IonicModule,
     HttpClientModule,
   ],
-  providers:[UserService,TeamService,AuthService],
+  providers:[UserService,TeamService,AuthService,AwsService],
   declarations: [SelectUsersModalComponent],
   exports:[SelectUsersModalComponent]
 })

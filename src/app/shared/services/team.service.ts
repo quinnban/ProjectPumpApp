@@ -8,7 +8,7 @@ import { Team } from '../models/team.model';
 })
 export class TeamService {
 
-  baseUri='http://localhost:3000/team';
+  baseUri='http://localhost:3000/teams';
 
   constructor(private http: HttpClient) { }
 

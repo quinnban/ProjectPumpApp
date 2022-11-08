@@ -15,11 +15,11 @@
 
 
     <ion-list role="feed">
-      <ion-item role="article" *ngFor="let u of user;let  i = index;" >
+      <ion-item role="article" *ngFor="let u of users">
         <ion-avatar slot="start">
           <ion-img src="https://ionicframework.com/docs/img/demos/avatar.svg"></ion-img>
         </ion-avatar>
-        <ion-label>User {{i}}</ion-label>
+        <ion-label>{{(u.firstName | titlecase) + ' ' +  (u.lastName | titlecase)}}</ion-label>
       </ion-item>
     </ion-list>
 

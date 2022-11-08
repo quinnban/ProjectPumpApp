@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Team } from '../shared/models/team.model';
+import { TeamService } from '../shared/services/team.service';
 
 @Component({
   selector: 'app-manage-teams',
@@ -7,12 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageTeamsPage implements OnInit {
 
-  team = Array(20).fill(0).map((x,i)=>i);
+  teams: Team [] = [];
 
 
-  constructor() { }
+  constructor(private teamService: TeamService) { }
 
   ngOnInit() {
+    this.teamService.findAllTeams().subscribe(teams => {
+      this.teams = teams;
+    });
   }
 
 }

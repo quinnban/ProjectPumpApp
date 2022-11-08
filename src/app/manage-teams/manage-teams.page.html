@@ -13,11 +13,11 @@
 
 <ion-content>
     <ion-list role="feed">
-      <ion-item role="article" *ngFor="let t of team;let  i = index;"  routerLink="/team/{{i}}">
+      <ion-item role="article" *ngFor="let t of teams;let  i = index;"  routerLink="/team/{{t.id}}">
         <ion-avatar slot="start">
           <ion-img src="https://ionicframework.com/docs/img/demos/avatar.svg"></ion-img>
         </ion-avatar>
-        <ion-label>Team {{i}}</ion-label>
+        <ion-label>{{t.name | titlecase}}</ion-label>
       </ion-item>
     </ion-list>
 

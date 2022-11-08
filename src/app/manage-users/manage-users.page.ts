@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { User } from '../shared/models/user.model';
+import { UserService } from '../shared/services/user.service';
 
 @Component({
   selector: 'app-manage-users',
@@ -8,12 +10,16 @@ import { AlertController } from '@ionic/angular';
 })
 export class ManageUsersPage implements OnInit {
 
-  user = Array(20).fill(0).map((x,i)=>i);
+  users: User [] = [];
 
 
-  constructor(private alertController: AlertController) { }
+  constructor(private alertController: AlertController,
+              private userService: UserService) { }
 
   ngOnInit() {
+    this.userService.findAllUsers().subscribe(users => {
+      this.users = users;
+    });
   }
 
   async inviteUser(): Promise<void> {
