@@ -42,6 +42,14 @@ const routes: Routes = [
   {
     path: 'team/:id',
     loadChildren: () => import('./edit-team/edit-team.module').then( m => m.EditTeamPageModule)
+  },
+  {
+    path: 'create-workout',
+    loadChildren: () => import('./create-workout/create-workout.module').then( m => m.CreateWorkoutPageModule)
+  },
+  {
+    path: 'edit-workout',
+    loadChildren: () => import('./edit-workout/edit-workout.module').then( m => m.EditWorkoutPageModule)
   }
 ];
 
