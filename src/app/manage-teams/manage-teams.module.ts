@@ -8,6 +8,7 @@ import { ManageTeamsPageRoutingModule } from './manage-teams-routing.module';
 
 import { ManageTeamsPage } from './manage-teams.page';
 import { SharedModule } from '../shared/shared.module';
+import { CreateTeamComponent } from './components/create-team/create-team.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { SharedModule } from '../shared/shared.module';
     ManageTeamsPageRoutingModule,
     SharedModule
   ],
-  declarations: [ManageTeamsPage]
+  declarations: [ManageTeamsPage,CreateTeamComponent]
 })
 export class ManageTeamsPageModule {}

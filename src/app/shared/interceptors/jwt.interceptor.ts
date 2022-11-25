@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Preferences } from '@capacitor/preferences';
 
 
 
@@ -19,6 +20,11 @@ export class JwtInterceptor implements HttpInterceptor {
         //         setHeaders: { Authorization: `Bearer ${account.token}` }
         //     });
         // }
+        const checkName = async () => {
+          const { value } = await Preferences.get({ key: 'name' });
+
+          console.log(`Hello ${value}!`);
+        };
 
         return next.handle(request);
     }

@@ -5,17 +5,17 @@
       <ion-img src="assets/logo.svg" class="picture"></ion-img>
 
 
-    <div class="bottom">
+    <div class="bottom" [formGroup]="loginForm">
     <ion-item class="width">
       <ion-label>Email:</ion-label>
-      <ion-input></ion-input>
+      <ion-input formControlName="username"></ion-input>
     </ion-item>
 
     <ion-item class="width">
       <ion-label>Password:</ion-label>
-      <ion-input></ion-input>
+      <ion-input formControlName="password"></ion-input>
     </ion-item>
-    <ion-button expand="block"  routerLink="/workouts">Login</ion-button>
+    <ion-button expand="block"  (click)="login()">Login</ion-button>
   </div>
   </div>
 </ion-content>
