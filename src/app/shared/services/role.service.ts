@@ -15,6 +15,7 @@ export class RoleService {
 
   async setRole(){
    const {value } =  await Preferences.get({ key: 'role'});
+   console.log(value);
     this._role.next(value as Role);
   }
 

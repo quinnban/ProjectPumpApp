@@ -14,20 +14,21 @@ import { RoleService } from './role.service';
 
 export class AuthService {
 
-  baseUri='http://localhost:3000/user';
+  baseUri='http://localhost:3000/auth';
 
   constructor(private http: HttpClient,
     private roleService: RoleService) { }
 
-  login(username: string, password: string): Observable<string> {
-    return this.http.post<string>(`${this.baseUri}/login`,{username,password})
+  login(email: string, password: string): Observable<string> {
+    return this.http.post(`${this.baseUri}`,{email,password}, {responseType: 'text'})
     .pipe(map(result => {
       console.log(result);
-      const { role } = jwt_decode(result) as any;
-       Preferences.set({ key: 'role', value: role});
+      const  token  = jwt_decode(result) as any;
+      console.log(token);
+       Preferences.set({ key: 'role', value: token.payload.role});
        Preferences.set({ key: 'token', value: result});
        this.roleService.setRole();
-      return role as string;
+      return token.payload.role;
     }));
   }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
-import { Roles } from '../shared/enums/roles.enum';
+import { Role } from '../shared/enums/roles.enum';
 import { AuthService } from '../shared/services/auth.service';
 
 @Component({
@@ -29,9 +29,9 @@ ionViewWillEnter() {
  }
 
  login(): void {
-  this.authService.login(this.loginForm.value.username,this.loginForm.value.password).subscribe(result => {
+  this.authService.login(this.loginForm.value.email,this.loginForm.value.password).subscribe(result => {
     console.log(result);
-    if(result === Roles.USER){
+    if(result === Role.USER){
       this.router.navigate(['workouts']);
     } else {
       this.router.navigate(['manage-workouts']);
@@ -42,7 +42,7 @@ ionViewWillEnter() {
 
  createLoginForm(): FormGroup {
   return this.fb.group({
-    username: '',
+    email: '',
     password: ''
   });
  }
