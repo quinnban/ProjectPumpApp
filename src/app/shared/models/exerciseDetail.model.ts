@@ -5,5 +5,5 @@ export class ExerciseDetail {
   workoutId: string;
   exerciseId: string;
   exercise: Exercise;
-  set: number [];
+  reps: number [];
 }

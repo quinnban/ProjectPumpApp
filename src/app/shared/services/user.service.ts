@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { UpdateUser } from '../models/updateUser.model';
 import { UploadPicture } from '../models/uploadPitcure';
 import { User } from '../models/user.model';
+import { Workout } from '../models/workout.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,11 @@ export class UserService {
     return this.http.put<User>(`${this.baseUri}/${user.id}`,user);
   }
 
-  updateProfilePicture(id){
+  updateProfilePicture(id: string){
     return this.http.get<UploadPicture>(`${this.baseUri}/${id}/uploadProfilePicture`);
+  }
+
+  findWorkouts(id: string): Observable<Workout []>{
+    return this.http.get<Workout []>(`${this.baseUri}/${id}/workouts`);
   }
 }

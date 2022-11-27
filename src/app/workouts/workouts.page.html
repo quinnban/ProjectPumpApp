@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-list>
-    <app-workout-card *ngFor="let w of workouts"  routerLink="/workout/{{w}}"></app-workout-card>
+    <app-workout-card *ngFor="let w of workouts"  routerLink="/workout/{{w.id}}" [workout]="w"></app-workout-card>
   </ion-list>
 
 </ion-content>

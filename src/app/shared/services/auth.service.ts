@@ -19,16 +19,15 @@ export class AuthService {
   constructor(private http: HttpClient,
     private roleService: RoleService) { }
 
-  login(email: string, password: string): Observable<string> {
+  login(email: string, password: string) {
     return this.http.post(`${this.baseUri}`,{email,password}, {responseType: 'text'})
     .pipe(map(result => {
-      console.log(result);
       const  token  = jwt_decode(result) as any;
-      console.log(token);
        Preferences.set({ key: 'role', value: token.payload.role});
+       Preferences.set({ key: 'role', value: token.payload.profileId});
        Preferences.set({ key: 'token', value: result});
        this.roleService.setRole();
-      return token.payload.role;
+      return {role: token.payload.role, profileId: token.payload.profileId};
     }));
   }
 }

@@ -21,7 +21,7 @@ export class JwtInterceptor implements HttpInterceptor {
         //     });
         // }
         const checkName = async () => {
-          const { value } = await Preferences.get({ key: 'name' });
+          const { value } = await Preferences.get({ key: 'token' });
 
           console.log(`Hello ${value}!`);
         };

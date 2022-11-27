@@ -6,21 +6,21 @@ import { Workout } from '../models/workout.model';
 @Injectable({
   providedIn: 'root'
 })
-export class TeamService {
+export class WorkoutService {
 
-  baseUri='http://localhost:3000/exercise';
+  baseUri='http://localhost:3000/workout';
 
   constructor(private http: HttpClient) { }
 
-  findAllTeams(): Observable<Workout []>{
+  findAllWorkouts(): Observable<Workout []>{
     return this.http.get<Workout []>(this.baseUri);
   }
 
-  findTeam(id: string): Observable<Workout>{
+  findWorkout(id: string): Observable<Workout>{
     return this.http.get<Workout>(`${this.baseUri}/${id}`);
   }
 
-  updateTeam(workout: Workout): Observable<Workout>{
+  updateWorkout(workout: Workout): Observable<Workout>{
     return this.http.put<Workout>(`${this.baseUri}/${workout.id}`,workout);
   }
 

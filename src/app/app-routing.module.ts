@@ -28,7 +28,7 @@ const routes: Routes = [
     loadChildren: () => import('./manage-users/manage-users.module').then( m => m.ManageUsersPageModule)
   },
   {
-    path: 'workouts',
+    path: ':profileId/workouts',
     loadChildren: () => import('./workouts/workouts.module').then( m => m.WorkoutsPageModule)
   },
   {

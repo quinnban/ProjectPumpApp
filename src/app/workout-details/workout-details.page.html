@@ -3,13 +3,17 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Workout Details</ion-title>
+    <ion-title>{{workout?.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <app-exercise-card *ngFor="let e of exercises"></app-exercise-card>
-  </ion-list>
+  <!-- <ion-list>
+    <app-exercise-card *ngFor="let e of workout?.exercises" [exercise]="e"></app-exercise-card>
+  </ion-list> -->
+
+  <ion-accordion-group (ionChange)="userclick($event)">
+    <app-exercise-card *ngFor="let e of workout?.exercises" [exercise]="e"></app-exercise-card>
+  </ion-accordion-group>
 
 </ion-content>

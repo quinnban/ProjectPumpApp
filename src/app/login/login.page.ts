@@ -31,8 +31,8 @@ ionViewWillEnter() {
  login(): void {
   this.authService.login(this.loginForm.value.email,this.loginForm.value.password).subscribe(result => {
     console.log(result);
-    if(result === Role.USER){
-      this.router.navigate(['workouts']);
+    if(result.role === Role.USER){
+      this.router.navigate([result.profileId,'workouts']);
     } else {
       this.router.navigate(['manage-workouts']);
     }

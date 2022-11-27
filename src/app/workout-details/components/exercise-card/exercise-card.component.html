@@ -1,14 +1,23 @@
-<ion-card>
+<!-- <ion-card>
   <ion-grid class="ion-no-padding">
     <ion-row class="ion-no-padding">
       <ion-col class="ion-no-padding">
         <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
       </ion-col>
       <ion-col class="ion-text-center">
-        <ion-card-title class="title-padding">BenchPress</ion-card-title>
-        <ion-card-subtitle>5 Sets - 5 Reps</ion-card-subtitle>
+        <ion-card-title class="title-padding">{{exercise.exercise.name}}</ion-card-title>
+        <ion-card-subtitle *ngFor="let set of exercise.reps; let index = index">Set {{index+1}}: {{set}} Reps</ion-card-subtitle>
       </ion-col>
     </ion-row>
   </ion-grid>
+</ion-card> -->
 
-</ion-card>
+<ion-accordion (click)="userclick($event)">
+  <ion-item slot="header" color="light">
+    <ion-label>
+      <h3>{{exercise.exercise.name}}</h3>
+      <p *ngFor="let set of exercise.reps; let index = index" >Set {{index+1}}: {{set}} Reps</p>
+    </ion-label>
+  </ion-item>
+  <div class="ion-padding" slot="content">First Content</div>
+</ion-accordion>

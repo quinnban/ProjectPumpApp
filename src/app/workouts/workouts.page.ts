@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { map, switchMap } from 'rxjs/operators';
+import { Workout } from '../shared/models/workout.model';
+import { UserService } from '../shared/services/user.service';
 
 @Component({
   selector: 'app-workouts',
@@ -8,13 +12,17 @@ import { MenuController } from '@ionic/angular';
 })
 export class WorkoutsPage implements OnInit {
 
-  workouts = Array(10).fill(0).map((x,i)=>i);
+  workouts: Workout [] = [];
 
 
-  constructor(public menuCtrl: MenuController) { }
+  constructor(public menuCtrl: MenuController,
+              private route: ActivatedRoute,
+              private userService: UserService ) { }
 
   ngOnInit() {
-
+    this.route.params.pipe(switchMap(params => this.userService.findWorkouts(params.profileId))).subscribe(workouts => {
+      this.workouts = workouts;
+    });
   }
 
   ionViewWillEnter() {

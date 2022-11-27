@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ExerciseDetail } from 'src/app/shared/models/exerciseDetail.model';
 
 @Component({
   selector: 'app-exercise-card',
@@ -7,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExerciseCardComponent implements OnInit {
 
+  @Input() exercise: ExerciseDetail;
+
   constructor() { }
 
   ngOnInit() {}
+
+  userclick(ev: any){
+    console.log(ev);
+  }
 
 }
