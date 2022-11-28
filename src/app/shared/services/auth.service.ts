@@ -26,8 +26,6 @@ export class AuthService {
        Preferences.set({ key: 'role', value: token.payload.role});
        Preferences.set({ key: 'profileId', value: token.payload.profileId});
        Preferences.set({ key: 'token', value: result});
-        this.currentUserService.setUserId();
-        this.roleService.setRole();
       return {role: token.payload.role, profileId: token.payload.profileId};
     }));
   }

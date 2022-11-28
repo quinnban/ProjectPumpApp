@@ -10,15 +10,19 @@ import { Role } from '../enums/roles.enum';
   providedIn: 'root'
 })
 export class RoleService {
-  private _role: BehaviorSubject<Role> = new BehaviorSubject(null);
-  role = this._role.asObservable();
+   role: BehaviorSubject<Role> = new BehaviorSubject(null);
+
 
   async setRole(role?: string){
+    if(this.role.value){
+      return;
+    }
     if(role){
-      this._role.next(role as Role);
+      this.role.next(role as Role);
     } else {
       const {value } =  await Preferences.get({ key: 'role'});
-      this._role.next(value as Role);
+      console.log(value);
+      this.role.next(value as Role);
     }
   }
 

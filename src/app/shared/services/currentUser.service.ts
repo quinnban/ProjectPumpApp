@@ -9,15 +9,18 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class CurrentUserService {
 
-  _userId: BehaviorSubject<string> = new BehaviorSubject(null);
-  user = this._userId.asObservable();
+  user: BehaviorSubject<string> = new BehaviorSubject(null);
+
 
   async setUserId(id?: string){
+    if(this.user.value){
+      return;
+    }
     if(id){
-      this._userId.next(id);
+      this.user.next(id);
     } else {
       const {value } =  await Preferences.get({ key: 'profileId'});
-      this._userId.next(value);
+      this.user.next(value);
     }
   }
 

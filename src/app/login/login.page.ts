@@ -38,13 +38,14 @@ ionViewWillEnter() {
   const loading = await this.loadingController.create();
   await loading.present();
   this.authService.login(this.loginForm.value.email,this.loginForm.value.password).subscribe(async result => {
-    console.log(result);
     await loading.dismiss();
     if(result.role === Role.USER){
       this.router.navigate([result.profileId,'workouts']);
     } else {
       this.router.navigate(['manage-workouts']);
     }
+  }, async err => {
+    await loading.dismiss();
   });
 
  }
