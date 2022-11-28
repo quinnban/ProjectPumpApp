@@ -10,6 +10,8 @@ import { TeamService } from './services/team.service';
 import { AuthService } from './services/auth.service';
 import { AwsService } from './services/aws.service';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { CurrentUserService } from './services/currentUser.service';
+import { RoleService } from './services/role.service';
 
 
 @NgModule({
@@ -24,6 +26,8 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     TeamService,
     AuthService
     ,AwsService,
+    CurrentUserService,
+    RoleService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   declarations: [SelectUsersModalComponent],

@@ -13,10 +13,13 @@ export class RoleService {
   private _role: BehaviorSubject<Role> = new BehaviorSubject(null);
   role = this._role.asObservable();
 
-  async setRole(){
-   const {value } =  await Preferences.get({ key: 'role'});
-   console.log(value);
-    this._role.next(value as Role);
+  async setRole(role?: string){
+    if(role){
+      this._role.next(role as Role);
+    } else {
+      const {value } =  await Preferences.get({ key: 'role'});
+      this._role.next(value as Role);
+    }
   }
 
 }

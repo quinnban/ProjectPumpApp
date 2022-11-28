@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { AlertController } from '@ionic/angular';
+import { switchMap } from 'rxjs/operators';
+import { User } from '../shared/models/user.model';
+import { UserService } from '../shared/services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,8 +16,14 @@ import { AlertController } from '@ionic/angular';
 export class ProfilePage implements OnInit {
 
   pictureUrl=null;
+  profileForm: FormGroup;
 
-  constructor(private alertController: AlertController) { }
+  constructor(private alertController: AlertController,
+              private userService: UserService,
+              private fb: FormBuilder,
+              private route: ActivatedRoute
+              ) { }
+
 
 
   async changePicture(){
@@ -37,6 +48,10 @@ export class ProfilePage implements OnInit {
   }
 
   ngOnInit() {
+    this.profileForm = this.createProfileForm();
+    this.route.params.pipe(switchMap(params => this.userService.findUser(params.profileId))).subscribe(user => {
+      this.profileForm.patchValue({firstName: user.firstName, lastName:user.lastName});
+    });
   }
 
   async updateEmail(): Promise<void> {
@@ -105,6 +120,13 @@ export class ProfilePage implements OnInit {
 
     await alert.present();
 
+  }
+
+  private createProfileForm(): FormGroup{
+    return this.fb.group({
+      firstName:'',
+      lastName:''
+    });
   }
 
 }

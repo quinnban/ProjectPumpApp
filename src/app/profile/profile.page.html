@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [formGroup]="profileForm">
   <div class="avatarContainer">
     <ion-avatar class="avatar" (click)="changePicture()">
       <ion-img *ngIf="pictureUrl" [src]="pictureUrl "></ion-img>
@@ -18,12 +18,12 @@
   <ion-list>
     <ion-item>
       <ion-label position="stacked">First Name</ion-label>
-      <ion-input placeholder="Enter text"></ion-input>
+      <ion-input placeholder="Enter text" formControlName="firstName"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="stacked">Last Name</ion-label>
-      <ion-input placeholder="Enter text"></ion-input>
+      <ion-input placeholder="Enter text" formControlName="lastName"></ion-input>
     </ion-item>
 
     <ion-button expand="block" >Update</ion-button>
