@@ -12,7 +12,7 @@ export class CurrentUserService {
   user: BehaviorSubject<string> = new BehaviorSubject(null);
 
 
-  async setUserId(id?: string){
+  async setUserId(id?: string): Promise<void>{
     if(this.user.value){
       return;
     }
@@ -22,6 +22,10 @@ export class CurrentUserService {
       const {value } =  await Preferences.get({ key: 'profileId'});
       this.user.next(value);
     }
+  }
+
+  async removeUser(): Promise<void>{
+    await Preferences.remove({key:'profileId'});
   }
 
 }

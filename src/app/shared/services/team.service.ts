@@ -24,5 +24,9 @@ export class TeamService {
     return this.http.put<Team>(`${this.baseUri}/${team.id}`,team);
   }
 
+  createTeam(value: string): Observable<Team> {
+    return this.http.post<Team>(this.baseUri,{name:value});
+  }
+
 
 }

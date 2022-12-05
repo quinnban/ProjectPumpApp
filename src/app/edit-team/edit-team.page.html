@@ -21,9 +21,14 @@
       <ion-input placeholder="Enter text" formControlName="name"></ion-input>
     </ion-item>
 
-    <ion-item (click)="openModal()">
+    <ion-item (click)="openUserModal()">
       <ion-label position="stacked">Users</ion-label>
-      <ion-label></ion-label>
+      <p>user</p>
+    </ion-item>
+
+    <ion-item (click)="openWorkoutModal()">
+      <ion-label position="stacked">Workouts</ion-label>
+      <p>workout</p>
     </ion-item>
 
     <ion-button expand="full">Update</ion-button>

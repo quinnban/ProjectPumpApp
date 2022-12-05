@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { Filesystem } from '@capacitor/filesystem';
 import { ModalController } from '@ionic/angular';
-import { SelectUsersModalComponent } from '../shared/componets/select-users-modal/select-users-modal.component';
+import { SelectItemsModalComponent } from '../shared/components/select-items-modal/select-items-modal.component';
+import { User } from '../shared/models/user.model';
+import { UserService } from '../shared/services/user.service';
 
 @Component({
   selector: 'app-create-team',
@@ -14,8 +16,9 @@ export class CreateTeamPage implements OnInit {
   pictureUrl=null;
   selectedUsers=[];
   selectedUsersLabel: string;
+  users: User[];
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor(private modalCtrl: ModalController, private userService: UserService) { }
 
 
   async changePicture(){
@@ -41,14 +44,15 @@ export class CreateTeamPage implements OnInit {
 
   ngOnInit() {
     this.selectedUsersLabel = 'none';
+    this.userService.findAllUsers().subscribe(users => this.users = users);
   }
 
   async openModal() {
     const modal = await this.modalCtrl.create({
-      component: SelectUsersModalComponent,
+      component: SelectItemsModalComponent,
       componentProps: {
-        orginialUsers: Array(20).fill(0).map((x,i)=>i),
-        selectedUsers: this.selectedUsers
+        orginialItems: this.users.map(user => ({name: user.firstName.concat(` ${user.lastName}`), id: user.id})),
+        selectedItems: this.selectedUsers.map(user => ({name: user.firstName.concat(` ${user.lastName}`), id: user.id}))
       }
     });
     modal.present();
@@ -63,5 +67,6 @@ export class CreateTeamPage implements OnInit {
       this.selectedUsersLabel = 'none';
     }
   }
+
 
 }

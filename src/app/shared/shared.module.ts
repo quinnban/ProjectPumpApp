@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { IonicModule } from '@ionic/angular';
-import { SelectUsersModalComponent } from './componets/select-users-modal/select-users-modal.component';
 import { UserService } from './services/user.service';
 import { TeamService } from './services/team.service';
 import { AuthService } from './services/auth.service';
@@ -12,6 +11,7 @@ import { AwsService } from './services/aws.service';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { CurrentUserService } from './services/currentUser.service';
 import { RoleService } from './services/role.service';
+import { SelectItemsModalComponent } from './components/select-items-modal/select-items-modal.component';
 
 
 @NgModule({
@@ -20,6 +20,7 @@ import { RoleService } from './services/role.service';
     FormsModule,
     IonicModule,
     HttpClientModule,
+    ReactiveFormsModule
   ],
   providers:[
     UserService,
@@ -30,7 +31,7 @@ import { RoleService } from './services/role.service';
     RoleService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
-  declarations: [SelectUsersModalComponent],
-  exports:[SelectUsersModalComponent]
+  declarations: [SelectItemsModalComponent],
+  exports:[SelectItemsModalComponent]
 })
 export class SharedModule {}
