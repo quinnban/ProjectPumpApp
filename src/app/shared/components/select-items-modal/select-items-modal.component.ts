@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { debounceTime } from 'rxjs/operators';
-import { Iteam } from '../../models/item.model';
+import { Item } from '../../models/item.model';
 
 
 @Component({
@@ -12,9 +12,9 @@ import { Iteam } from '../../models/item.model';
   styleUrls: ['./select-items-modal.component.scss'],
 })
 export class SelectItemsModalComponent implements OnInit {
-  orginialItems: Readonly <Array<Iteam>>;
-  selectedItems: Array<Iteam>;
-  filteredItems: Array<Iteam>;
+  orginialItems: Readonly <Array<Item>>;
+  selectedItems: Array<Item>;
+  filteredItems: Array<Item>;
 
   searchString= new FormControl('');
 
@@ -44,7 +44,7 @@ export class SelectItemsModalComponent implements OnInit {
  }
 
  confirm(): void {
-    this.modalCtrl.dismiss( this.selectedItems.map(i => i.id),'confirm');
+    this.modalCtrl.dismiss( this.selectedItems,'confirm');
  }
 
 

@@ -33,8 +33,6 @@ export class ManageTeamsPage implements OnInit {
           text: 'OK',
           role: 'confirm',
           handler: (value) => {
-            console.log(value);
-
             this.createTeam(value[0]);
             //do http return false is error
             return false;

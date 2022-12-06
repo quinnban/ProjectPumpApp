@@ -1,0 +1,4 @@
+<ion-item (click)="openModal()">
+  <ion-label position="stacked">{{title | titlecase}}</ion-label>
+  <p><label *ngFor="let item of selectedItemsArray.value">{{item.name | titlecase}},</label></p>
+</ion-item>

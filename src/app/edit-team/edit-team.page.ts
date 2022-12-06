@@ -20,7 +20,7 @@ export class EditTeamPage implements OnInit {
   team: Team;
   teamForm: FormGroup;
   users: User [];
-  workouts:Workout [];
+  workouts: Workout [];
 
   constructor(private teamService: TeamService,
               private route: ActivatedRoute,

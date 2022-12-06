@@ -12,6 +12,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { CurrentUserService } from './services/currentUser.service';
 import { RoleService } from './services/role.service';
 import { SelectItemsModalComponent } from './components/select-items-modal/select-items-modal.component';
+import { ItemSelectorComponent } from './components/item-selector/item-selector.component';
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import { SelectItemsModalComponent } from './components/select-items-modal/selec
     RoleService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
-  declarations: [SelectItemsModalComponent],
-  exports:[SelectItemsModalComponent]
+  declarations: [SelectItemsModalComponent,ItemSelectorComponent],
+  exports:[SelectItemsModalComponent,ItemSelectorComponent]
 })
 export class SharedModule {}
