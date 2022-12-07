@@ -76,8 +76,10 @@ export class ItemSelectorComponent implements OnInit, OnDestroy {
     });
     modal.present();
     const { data, role } = await modal.onWillDismiss();
-    console.log(data);
-    // this.patchItems(data.items);
+    console.log(data, role);
+    if(role === 'confirm'){
+      this.patchItems(data);
+    }
   }
 
   private patchItems(items: Item []){

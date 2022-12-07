@@ -21,16 +21,9 @@
       <ion-input placeholder="Enter text" formControlName="name"></ion-input>
     </ion-item>
 
-    <ion-item (click)="openUserModal()">
-      <ion-label position="stacked">Users</ion-label>
-      <p>user</p>
-    </ion-item>
+    <app-item-selector formControlName="users" title="users" [itemList]="getUserItems()"></app-item-selector>
+    <app-item-selector formControlName="workouts" title="Wsers" [itemList]="getWorkouItems()"></app-item-selector>
 
-    <ion-item (click)="openWorkoutModal()">
-      <ion-label position="stacked">Workouts</ion-label>
-      <p>workout</p>
-    </ion-item>
-
-    <ion-button expand="full">Update</ion-button>
+    <ion-button expand="full" (click)="updateTeam()">Update</ion-button>
   </ion-list>
 </ion-content>

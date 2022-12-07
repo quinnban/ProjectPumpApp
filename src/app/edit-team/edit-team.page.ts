@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -33,11 +34,27 @@ export class EditTeamPage implements OnInit {
     this.teamForm = this.buildForm();
     this.route.params.pipe(switchMap(params =>  this.teamService.findTeam(params.id))).subscribe(team => {
         this.team = team;
-        this.teamForm.patchValue({name: team.name});
+        this.teamForm.patchValue({
+          name: team.name,
+          users: team.users ? team.users?.map(user => ({name: user.firstName.concat(` ${user.lastName}`), id: user.id})) : [],
+          workouts: team.workouts ? team.workouts.map(workout => ({name: workout.name, id: workout.id,  description: workout.discription})) : []
+        }) ;
       });
     this.userService.findAllUsers().subscribe(users => this.users = users);
     this.workoutService.findAllWorkouts().subscribe(workouts => this.workouts = workouts);
 
+  }
+
+  getUserItems(){
+    return this.users?.map(u =>({id:u.id, name: u.firstName.concat(` ${u.lastName}`)}));
+  }
+
+  getWorkouItems(){
+    return this.workouts?.map(workout => ({name: workout.name, id: workout.id,  description: workout.discription}));
+  }
+
+  updateTeam(){
+    console.log(this.teamForm.value);
   }
 
   async openUserModal() {
@@ -71,7 +88,9 @@ export class EditTeamPage implements OnInit {
   private buildForm(): FormGroup {
     return this.formBuilder.group({
       name: '',
-      url: ''
+      url: '',
+      users: [],
+      workouts: []
     });
   }
 

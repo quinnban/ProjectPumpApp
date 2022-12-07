@@ -24,7 +24,8 @@ ngOnInit(): void {
     this.role = role;
     if(role === Role.ADMIN){
       this.appPages.unshift( { title: 'Users', url: '/manage-users', icon: 'person' },
-      { title: 'Teams', url: '/manage-teams', icon: 'people' });
+      { title: 'Teams', url: '/manage-teams', icon: 'people' },
+      { title: 'Manage Workouts', url: '/manage-workouts', icon: 'home' });
     }
   });
 
