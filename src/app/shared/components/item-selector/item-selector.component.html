@@ -1,4 +1,9 @@
 <ion-item (click)="openModal()">
   <ion-label position="stacked">{{title | titlecase}}</ion-label>
-  <p><label *ngFor="let item of selectedItemsArray.value">{{item.name | titlecase}},</label></p>
+  <p>
+    <label *ngFor="let item of selectedItemsArray.value;let last = last;">
+      <span *ngIf="!last">{{item.name | titlecase}}, </span>
+      <span *ngIf="last">{{item.name | titlecase}}</span>
+    </label>
+  </p>
 </ion-item>
