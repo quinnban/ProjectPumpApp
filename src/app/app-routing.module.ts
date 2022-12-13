@@ -50,6 +50,14 @@ const routes: Routes = [
   {
     path: 'manage-workouts',
     loadChildren: () => import('./manage-workouts/manage-workouts.module').then( m => m.ManageWorkoutsPageModule)
+  },
+  {
+    path: 'manage-exercises',
+    loadChildren: () => import('./manage-exercises/manage-exercises.module').then( m => m.ManageExercisesPageModule)
+  },
+  {
+    path: 'edit-exercise/:id',
+    loadChildren: () => import('./edit-exercise/edit-exercise.module').then( m => m.EditExercisePageModule)
   }
 ];
 
