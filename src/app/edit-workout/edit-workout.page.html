@@ -1,9 +1,24 @@
 <ion-header>
+  <ion-buttons slot="start">
+    <ion-back-button></ion-back-button>
+  </ion-buttons>
   <ion-toolbar>
-    <ion-title>EditWorkout</ion-title>
+    <ion-title>Edit Workout</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content  [formGroup]="workoutForm">
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Workout Name</ion-label>
+      <ion-input placeholder="Enter text" formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Description</ion-label>
+      <ion-textarea placeholder="Type something here" formControlName="description"></ion-textarea>
+    </ion-item>
+  </ion-list>
+  <app-exercise-list formControlName="exercises"></app-exercise-list>
 
+  <ion-button expand="full" >Update</ion-button>
 </ion-content>

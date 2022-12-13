@@ -28,17 +28,13 @@ export class EditTeamPage implements OnInit {
               private formBuilder: FormBuilder,
               private modalCtrl: ModalController,
               private userService: UserService,
-              protected workoutService: WorkoutService) { }
+              private workoutService: WorkoutService) { }
 
   ngOnInit(): void {
     this.teamForm = this.buildForm();
     this.route.params.pipe(switchMap(params =>  this.teamService.findTeam(params.id))).subscribe(team => {
         this.team = team;
-        this.teamForm.patchValue({
-          name: team.name,
-          users: team.users ? team.users?.map(user => ({name: user.firstName.concat(` ${user.lastName}`), id: user.id})) : [],
-          workouts: team.workouts ? team.workouts.map(workout => ({name: workout.name, id: workout.id,  description: workout.discription})) : []
-        }) ;
+       this.patchForm(team);
       });
     this.userService.findAllUsers().subscribe(users => this.users = users);
     this.workoutService.findAllWorkouts().subscribe(workouts => this.workouts = workouts);
@@ -50,39 +46,22 @@ export class EditTeamPage implements OnInit {
   }
 
   getWorkouItems(){
-    return this.workouts?.map(workout => ({name: workout.name, id: workout.id,  description: workout.discription}));
+    return this.workouts?.map(workout => ({name: workout.name, id: workout.id,  description: workout.description}));
   }
 
   updateTeam(){
+    // this.teamService.updateTeam(this.teamForm.value).subscribe(team => {
+    //   this.patchForm(team);
+    // });
     console.log(this.teamForm.value);
   }
 
-  async openUserModal() {
-    const modal = await this.modalCtrl.create({
-      component: SelectItemsModalComponent,
-      componentProps: {
-        orginialItems: this.users.map(user => ({name: user.firstName.concat(` ${user.lastName}`), id: user.id})),
-        selectedItems: this.team.users.map(user => ({name: user.firstName.concat(` ${user.lastName}`), id: user.id}))
-      }
-    });
-    modal.present();
-    const { data, role } = await modal.onWillDismiss();
-
-    console.log(data);
-  }
-
-  async openWorkoutModal() {
-    const modal = await this.modalCtrl.create({
-      component: SelectItemsModalComponent,
-      componentProps: {
-        orginialItems: this.workouts.map(workout => ({name: workout.name, id: workout.id, description: workout.discription})),
-        selectedItems: this.team.workouts.map(workout => ({name: workout.name, id: workout.id,  description: workout.discription})),
-      }
-    });
-    modal.present();
-    const { data, role } = await modal.onWillDismiss();
-
-    console.log(data);
+  private patchForm(team: Team){
+    this.teamForm.patchValue({
+      name: team.name,
+      users: team.users ? team.users?.map(user => ({name: user.firstName.concat(` ${user.lastName}`), id: user.id})) : [],
+      workouts: team.workouts ? team.workouts.map(workout => ({name: workout.name, id: workout.id,  description: workout.description})) : []
+    }) ;
   }
 
   private buildForm(): FormGroup {

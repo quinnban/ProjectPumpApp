@@ -1,0 +1,14 @@
+<ng-container >
+  <ion-list [formGroup]="repsForm">
+    <ng-container formArrayName="reps">
+
+    <ion-item *ngFor="let set of repsArray.controls; index as j;">
+      <ion-label position="stacked">Set {{j + 1}}</ion-label>
+      <ion-input [formControlName]="j"></ion-input>
+    </ion-item>
+
+  </ng-container>
+    <ion-button expand="block">Add set</ion-button>
+    <ion-button expand="block" color="danger">Delete exercise</ion-button>
+  </ion-list>
+</ng-container>

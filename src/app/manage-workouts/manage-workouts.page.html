@@ -1,15 +1,23 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>manageWorkouts</ion-title>
+    <ion-title>Manage Workouts</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-buttons slot="end"  routerLink="/create-team">
+    <ion-buttons slot="end"  (click)="createWorkoutAlert()">
       <ion-icon name="add-outline" size="large"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
+  <ion-searchbar></ion-searchbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-list role="feed">
+    <ion-item role="article" *ngFor="let w of workouts" routerLink="/edit-workout/{{w.id}}">
+      <ion-avatar slot="start">
+        <ion-img src="https://ionicframework.com/docs/img/demos/avatar.svg"></ion-img>
+      </ion-avatar>
+      <ion-label>{{(w.name| titlecase)}} </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

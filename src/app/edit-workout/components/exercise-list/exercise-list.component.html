@@ -1,0 +1,25 @@
+<ng-container [formGroup]="selectedExerciseDetailsForm">
+<ion-list>
+  <ion-list-header>
+    <ion-label>Exercises</ion-label>
+    <ion-button>Add</ion-button>
+  </ion-list-header>
+
+  </ion-list>
+
+  <ng-container formArrayName="exercises">
+    <ion-accordion-group>
+      <ion-accordion [value]='exercieseForm.value?.exercieseId'  *ngFor="let exercieseForm of selectedExerciseDetailsArray.controls; index as i;">
+        <ion-item slot="header">
+          <ion-label>{{exercieseForm.value?.name}}</ion-label>
+        </ion-item>
+        <div slot="content" [formGroupName]="i">
+          <app-set-list formControlName="reps"></app-set-list>
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+    </ng-container>
+
+</ng-container>
+
+

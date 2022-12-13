@@ -24,5 +24,9 @@ export class WorkoutService {
     return this.http.put<Workout>(`${this.baseUri}/${workout.id}`,workout);
   }
 
+  createWorkout(workout: Workout): Observable<Workout>{
+    return this.http.post<Workout>(this.baseUri,workout);
+  }
+
 
 }
