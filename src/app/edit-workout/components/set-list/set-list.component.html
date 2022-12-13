@@ -1,14 +1,18 @@
 <ng-container >
-  <ion-list [formGroup]="repsForm">
+  <ion-list [formGroup]="repsForm" class="setlist">
     <ng-container formArrayName="reps">
-
-    <ion-item *ngFor="let set of repsArray.controls; index as j;">
-      <ion-label position="stacked">Set {{j + 1}}</ion-label>
-      <ion-input [formControlName]="j"></ion-input>
-    </ion-item>
+      <!-- (ionDrag)="swipeEvent($event)" swipe to delete later-->
+      <ion-item-sliding  *ngFor="let set of repsArray.controls; index as j;">
+        <ion-item>
+          <ion-label position="stacked">Set {{j + 1}}</ion-label>
+          <ion-input [formControlName]="j"></ion-input>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option color="danger" (click)="removeAtIndex(j)">Delete</ion-item-option>
+        </ion-item-options>
+    </ion-item-sliding>
 
   </ng-container>
-    <ion-button expand="block">Add set</ion-button>
-    <ion-button expand="block" color="danger">Delete exercise</ion-button>
+    <ion-button expand="block" (click)="addSet()">Add set</ion-button>
   </ion-list>
 </ng-container>

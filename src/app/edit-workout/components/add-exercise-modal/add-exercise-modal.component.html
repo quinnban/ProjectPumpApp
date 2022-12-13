@@ -1,0 +1,26 @@
+
+<ng-container #test>
+    <ng-container [formGroup]="searchForm">
+      <ion-searchbar placeholder="Search" (click)="clickSearch()" formControlName="search"></ion-searchbar>
+      <ion-select placeholder="Select category" formControlName="categories" [multiple]="true">
+        <ion-select-option [value]="c" *ngFor="let c of categories">{{c}}</ion-select-option>
+      </ion-select>
+    </ng-container>
+
+      <ion-content>
+    <ion-list>
+      <ion-item *ngFor="let e of shownExercises" (click)="addExercise(e)">
+        <ion-label>
+          <h2>{{e.name}}</h2>
+          <p>{{e.category}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)" threshold="2%">
+      <ion-infinite-scroll-content loadingText="Please wait..." loadingSpinner="bubbles"></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-content>
+</ng-container>
+
+

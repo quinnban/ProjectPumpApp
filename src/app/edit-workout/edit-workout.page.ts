@@ -29,6 +29,10 @@ export class EditWorkoutPage implements OnInit {
   });
   }
 
+  updateWorkout(){
+    console.log(this.workoutForm.value);
+  }
+
   private buildForm(): FormGroup {
     return this.formBuilder.group({
       name: '',
@@ -46,6 +50,7 @@ export class EditWorkoutPage implements OnInit {
       exercises: workout.exercises.map(e => ({id:e.id, exerciseId:e.exercise.id,name: e.exercise.name, reps: e.reps}))
     });
   }
+
 
 
 }

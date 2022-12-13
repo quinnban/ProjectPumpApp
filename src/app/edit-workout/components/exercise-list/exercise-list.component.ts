@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { ItemSelectorComponent } from 'src/app/shared/components/item-selector/item-selector.component';
 import { Exercise } from 'src/app/shared/models/exercise.model';
 import { ExerciseService } from 'src/app/shared/services/exercise.service';
+import { AddExerciseModalComponent } from '../add-exercise-modal/add-exercise-modal.component';
 
 @Component({
   selector: 'app-exercise-list',
@@ -69,7 +70,28 @@ export class ExerciseListComponent implements OnInit, OnDestroy, ControlValueAcc
     this.exerciseService.findAllExercises().subscribe(exercises => {
       this.exercises = exercises;
     });
+  }
 
+  removeAtIndex(index: number){
+    this.selectedExerciseDetailsArray.removeAt(index);
+  }
+
+  async openAddExerciseModal(){
+    const modal = await this.modalCtrl.create({
+      component: AddExerciseModalComponent,
+      componentProps: {
+        exercises: this.exercises
+      },
+      breakpoints: [0,0.5,1],
+      initialBreakpoint: 0.50
+    });
+    modal.present();
+    const { data, role } = await modal.onWillDismiss();
+    if(role === 'confirm'){
+      this.addExercise();
+      this.selectedExerciseDetailsArray.at(this.selectedExerciseDetailsArray.length-1).patchValue({exerciseId:data.id,name:data.name});
+      console.log(data, role);
+    }
   }
 
   private addExercise(): void {

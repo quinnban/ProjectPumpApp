@@ -2,7 +2,7 @@
 <ion-list>
   <ion-list-header>
     <ion-label>Exercises</ion-label>
-    <ion-button>Add</ion-button>
+    <ion-button (click)="openAddExerciseModal()">Add</ion-button>
   </ion-list-header>
 
   </ion-list>
@@ -15,6 +15,7 @@
         </ion-item>
         <div slot="content" [formGroupName]="i">
           <app-set-list formControlName="reps"></app-set-list>
+          <ion-button expand="block" color="danger" (click)="removeAtIndex(i)">Delete exercise</ion-button>
         </div>
       </ion-accordion>
     </ion-accordion-group>

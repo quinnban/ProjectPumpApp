@@ -30,6 +30,10 @@ export class SetListComponent implements OnInit, OnDestroy, ControlValueAccessor
     this.onTouched = fn;
   }
 
+  swipeEvent(event){
+    console.log(event);
+  }
+
   writeValue(value: any): void {
     if(!!value && value.length !==0){
       value.forEach(item => {
@@ -41,6 +45,10 @@ export class SetListComponent implements OnInit, OnDestroy, ControlValueAccessor
     } else {
       setTimeout(()=> this.repsArray.reset(),0);
     }
+  }
+
+  removeAtIndex(index: number){
+    this.repsArray.removeAt(index);
   }
 
   ngOnDestroy(): void {

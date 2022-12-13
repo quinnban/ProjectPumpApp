@@ -9,6 +9,7 @@ import { EditWorkoutPageRoutingModule } from './edit-workout-routing.module';
 import { EditWorkoutPage } from './edit-workout.page';
 import { ExerciseListComponent } from './components/exercise-list/exercise-list.component';
 import { SetListComponent } from './components/set-list/set-list.component';
+import { AddExerciseModalComponent } from './components/add-exercise-modal/add-exercise-modal.component';
 
 @NgModule({
   imports: [
@@ -16,8 +17,8 @@ import { SetListComponent } from './components/set-list/set-list.component';
     FormsModule,
     IonicModule,
     EditWorkoutPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  declarations: [EditWorkoutPage,ExerciseListComponent,SetListComponent]
+  declarations: [EditWorkoutPage,ExerciseListComponent,SetListComponent,AddExerciseModalComponent]
 })
 export class EditWorkoutPageModule {}
