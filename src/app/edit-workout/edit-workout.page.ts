@@ -30,11 +30,15 @@ export class EditWorkoutPage implements OnInit {
   }
 
   updateWorkout(){
+    this.workoutService.updateWorkout(this.workoutForm.value).subscribe(result => {
+      this.patchForm(result);
+    });
     console.log(this.workoutForm.value);
   }
 
   private buildForm(): FormGroup {
     return this.formBuilder.group({
+      id:'',
       name: '',
       url: '',
       description:'',
