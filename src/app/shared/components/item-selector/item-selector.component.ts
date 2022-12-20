@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @typescript-eslint/ban-types */
 import { Component, forwardRef, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormArray, FormBuilder, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { Item } from '../../models/item.model';
@@ -19,7 +19,7 @@ import { SelectItemsModalComponent } from '../select-items-modal/select-items-mo
     },
   ],
 })
-export class ItemSelectorComponent implements OnInit, OnDestroy {
+export class ItemSelectorComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
   @Input() title: string;
   @Input() itemList: Readonly<Item []>;

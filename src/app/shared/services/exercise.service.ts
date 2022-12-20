@@ -15,6 +15,9 @@ export class ExerciseService {
   findAllExercises(): Observable<Exercise []>{
     return this.http.get<Exercise []>(this.baseUri);
   }
+  createExercise(name: string): Observable<Exercise>{
+    return this.http.post<Exercise>(this.baseUri,{name});
+  }
 
   findExercise(id: string): Observable<Exercise>{
     return this.http.get<Exercise>(`${this.baseUri}/${id}`);

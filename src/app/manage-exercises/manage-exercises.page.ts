@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { InfiniteScrollCustomEvent } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { AlertController, InfiniteScrollCustomEvent, LoadingController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { Exercise } from '../shared/models/exercise.model';
@@ -14,14 +15,18 @@ import { ExerciseService } from '../shared/services/exercise.service';
 export class ManageExercisesPage implements OnInit {
 
   shownExercises: Exercise [];
-  exercises: Readonly<Exercise []>;
+  exercises: Exercise [];
   filteredExercises: Exercise [];
   categories: string [];
   searchForm: FormGroup;
   sub: Subscription = Subscription.EMPTY;
   private offset  = 0;
 
-  constructor(private exerciseService: ExerciseService,private fb: FormBuilder) { }
+  constructor(private exerciseService: ExerciseService,
+    private fb: FormBuilder,
+    private router: Router,
+    private alertController: AlertController,
+    private loadingController: LoadingController) { }
 
   ngOnInit() {
     this.exerciseService.findAllExercises().subscribe(ex => {
@@ -44,6 +49,51 @@ export class ManageExercisesPage implements OnInit {
   onIonInfinite(event) {
     this.showMoreExercises();
     (event as InfiniteScrollCustomEvent).target.complete();
+  }
+
+  async createExerciseAlert(): Promise<void> {
+    const alert = await this.alertController.create({
+      header: 'Create an exercise',
+      buttons: [
+        {
+          text: 'OK',
+          role: 'confirm',
+          handler: (value) => {
+            this.createExercise(value[0]);
+            //do http return false is error
+            return false;
+          },
+      },
+      {
+        role:'cancel',
+        text:'cancel'
+      }
+    ],
+      inputs: [
+        {
+          placeholder: 'Exercise name',
+          type:'text'
+        },
+      ],
+    });
+
+    await alert.present();
+
+  }
+
+  private async createExercise(name: string){
+    const screen = await this.loadingController.create();
+    screen.present();
+    this.exerciseService.createExercise(name).subscribe(exercise => {
+      this.exercises.push(exercise);
+      this.loadingController.dismiss();
+      this.alertController.dismiss();
+      this.router.navigate(['exercise',exercise.id,]);
+    },err => {
+    this.loadingController.dismiss();
+    console.log(err);
+    return false;
+  });
   }
 
   private showMoreExercises(){
