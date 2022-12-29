@@ -20,6 +20,14 @@ export class AppComponent implements OnInit, OnDestroy {
 
 ngOnInit(): void {
 
+  // Use matchMedia to check the user preference
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+  if(prefersDark.matches !== true){
+    this.toggleDarkTheme(true);
+  }
+
+  this.toggleDarkTheme(prefersDark.matches);
+
   this.roleService.role.pipe(skip(1)).subscribe(role => {
     this.role = role;
     if(role === Role.ADMIN){
@@ -36,6 +44,10 @@ ngOnInit(): void {
                       { title: 'Profile', url: `${this.profileId}/profile`, icon: 'person-circle' },
     );
   });
+}
+
+toggleDarkTheme(shouldAdd) {
+  document.body.classList.toggle('dark', shouldAdd);
 }
 
 ngOnDestroy(): void {
